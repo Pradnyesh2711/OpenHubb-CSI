@@ -3,7 +3,9 @@ import {FaUsers} from 'react-icons/fa'
 import {VscIssues} from 'react-icons/vsc'
 import {AiFillProject} from 'react-icons/ai'
 import HoverRepo from './HoverRepo.png'
+import Repositories from  '../../Repositories.json'
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Card = ({ title, description, issue, contributors }) => {
   return (
@@ -28,7 +30,10 @@ const Card = ({ title, description, issue, contributors }) => {
   );
 };
 
-const CardDetails = ({ title, description, issue, contributors }) => {
+const CardDetails = ({ title, description, issue, contributors, languages }) => {
+  // Convert the languages object into an array of strings
+  const languageList = Object.keys(languages);
+
   return (
     <div className="bg-white p-6 border rounded-lg shadow-lg transition duration-300 ease-in-out hover:border hover:shadow-gray-800">
       <div className="flex items-center mb-2">
@@ -46,6 +51,13 @@ const CardDetails = ({ title, description, issue, contributors }) => {
           <FaUsers size={22} className="mr-2 text-blue-700" />
           <p className="text-gray-500">{contributors} Contributors</p>
         </div>
+        <div className="flex items-center mb-2">
+          <FaUsers size={22} className="mr-2 text-blue-700" />
+          {/* Render each language */}
+          {languageList.map((language, index) => (
+            <p key={index} className="text-gray-500 mx-2">{language}</p>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -53,62 +65,40 @@ const CardDetails = ({ title, description, issue, contributors }) => {
 
 function Contribute() {
 
-  const [Repos, setRepos] = useState(null);
-useEffect(() => {
-  axios.get('https://api.github.com/users', {
-  headers: {
-    Authorization: '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'
-  }
-})
-.then(response => {
-  setRepos(response.data);
-})
-.catch(error => {
-  console.error(error);
-});
-}, []);
+  const [Contributors, setContributors] = useState([]);
+  const getContributors = (link) => {
+    
+      axios.get(link, {
+      headers: {
+        Authorization: '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'
+      }
+    })
+    .then(response => {
+      setContributors(response.data[0].contributions);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+    };
 
-console.log(Repos)
+    const [Languages, setLanguages] = useState([]);
+    const getLanguages = (link) => {
+      
+        axios.get(link, {
+        headers: {
+          Authorization: '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'
+        }
+      })
+      .then(response => {
+        setLanguages(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+      console.log(Languages)
+      };
 
   const [selectedCard, setSelectedCard] = useState(null);
-
-  const cards = [
-    {
-      id: 1,
-      title: 'Card 1',
-      description: 'Description for Card 1 jnernjnse jcnkjsenjcj jwenrcjnewrjk njcnejw jenrf jrenfjnewjnf ejnrfj ejnrfjenr jenrfj',
-      issues: 322,
-      contributors: 10
-    },
-    {
-      id: 2,
-      title: 'Card 2',
-      description: 'Description for Card 2 awnedjk awendjkwe jnwdjkw jwne',
-      issues: 322,
-      contributors: 10
-    },
-    {
-      id: 3,
-      title: 'Card 3',
-      description: 'Description for Card 3 waned wned jwned jnwe wjken',
-      issues: 322,
-      contributors: 10
-    },
-    {
-      id: 4,
-      title: 'Card 1',
-      description: 'Description for Card 1 jnernjnse jcnkjsenjcj jwenrcjnewrjk njcnejw',
-      issues: 322,
-      contributors: 10
-    },
-    {
-      id: 5,
-      title: 'Card 1',
-      description: 'Description for Card 1 jnernjnse jcnkjsenjcj jwenrcjnewrjk njcnejw',
-      issues: 322,
-      contributors: 10
-    },
-  ];
 
   return (
     <div className='p-16 bg-white'>
@@ -116,24 +106,29 @@ console.log(Repos)
       <div className="w-3/4 p-4">
         <h1 className="text-xl font-semibold mb-4">Cards</h1>
         <div className="grid grid-cols-2 gap-7">
-          {cards.map(card => (
-            <div key={card.id} className="cursor-pointer"
-                onMouseEnter={() => setSelectedCard(card)}
+          {Repositories.map(card => (
+            <Link to={`/issues?url=${encodeURIComponent(card.issues_url)}`} key={card.id} className="cursor-pointer hover:shadow-md hover:shadow-gray-800 hover:rounded-md"
+                onMouseEnter={() => {
+                  setSelectedCard(card);
+                  getContributors(card.contributors_url)
+                  getLanguages(card.languages_url)
+                  
+                }}
                 onMouseLeave={() => setSelectedCard(null)}>
-              <Card title={card.title} description={card.description} issue={card.issues} contributors={card.contributors}/>
-            </div>
+              <Card title={card.full_name} />
+            </Link>
           ))}
         </div>
       </div>
       <div className="w-1/2 p-4">
         <h1 className="text-xl font-semibold mb-4">Quick View</h1>
         {selectedCard ? (
-          <CardDetails title={selectedCard.title} description={selectedCard.description}
-            issue={selectedCard.issues} contributors={selectedCard.contributors}/>
-        ) : (
-          <div className='grid place-items-center mt-10'>
+          <CardDetails title={selectedCard.full_name} description={selectedCard.description}
+            languages={Languages} contributors={Contributors}/>
+            ) : (
+          <div className='grid place-items-center mt-20'>
             <p className="text-gray-500">Hover on a card to view details</p>
-            <img src={HoverRepo} alt='Hover' className=" place-self-center"></img>
+            <img src={HoverRepo} alt='Hover' className=" place-self-center mt-2"></img>
           </div>
         )}
       </div>
