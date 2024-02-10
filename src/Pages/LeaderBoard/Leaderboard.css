@@ -1,4 +1,4 @@
-
+/* 
     .container {
             margin-left: 200px;
     
@@ -39,7 +39,7 @@
             margin-top: -15px;
             margin-left: 20px;
             font-weight: bold;
-        }
+        } */
     
         /* .table{
         margin: 200px auto;
@@ -50,7 +50,7 @@
         padding:30px
     } */
     
-        .tableDiv {
+        /* .tableDiv {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -105,16 +105,16 @@
 
                 /* Add this CSS to your existing styles or create a new stylesheet */
         
-                .avatar-img {
+                 /* .avatar-img {
                     width: 40px;
                     /* Adjust the width and height as needed */
-                    height: 40px;
-                    border-radius: 50%;
+                    /* height: 40px;
+                    border-radius: 50%; */
                     /* Creates a circular shape */
-                    object-fit: cover;
+                    /* object-fit: cover; */
                     /* Ensures the image covers the entire container */
-                    object-position: center center;
+                    /* object-position: center center; */
                     /* Center the image within the container */
-                    display: block;
+                    /* display: block; */
                     /* Ensures proper display as a block element */
-                }
+                /* }  */
