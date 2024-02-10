@@ -55,14 +55,17 @@ function Contribute() {
 
   const [Repos, setRepos] = useState(null);
 useEffect(() => {
-  axios
-  .get(`https://api.github.com/users/Pradnyesh2711/repos`)
-  .then((response) => {
-      setRepos(response.data);
-  })
-  .catch((error) => {
-      console.log(error);
-  });
+  axios.get('https://api.github.com/users', {
+  headers: {
+    Authorization: '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'
+  }
+})
+.then(response => {
+  setRepos(response.data);
+})
+.catch(error => {
+  console.error(error);
+});
 }, []);
 
 console.log(Repos)
