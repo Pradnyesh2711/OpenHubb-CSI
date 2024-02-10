@@ -6,33 +6,42 @@ import HoverRepo from './HoverRepo.png'
 import Repositories from  '../../Repositories.json'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import Navigation from '../../Components/Navigation';
+import {PieChart} from '@mui/x-charts'
+import Tilt from 'react-parallax-tilt';
 
 const Card = ({ title, description, issue, contributors }) => {
   return (
-    <div className="bg-white p-6 border rounded-lg shadow-lg transition duration-300 ease-in-out hover:border hover:shadow-gray-80">
-      <div className="flex items-center mb-2">
+    <Tilt className="Tilt" options={{ max: 25, scale: 1.05 }}>
+      <div className="bg-white p-6 border-2 border-black rounded-lg shadow-lg transition duration-300 ease-in-out hover:border hover:shadow-gray-800">
+        <div className="flex items-center mb-2">
           <AiFillProject size={25} className="mr-2 text-blue-700" />
-          <h2 className="text-xl font-bold text-blue-700" >{title}</h2>
-      </div>
-      <p className="text-gray-600 mb-4 overflow-hidden" style={{ maxHeight: "3.2em", lineHeight: "1.6em", textOverflow: "ellipsis" }}>{description}</p>
-      <hr className="my-4 border-t-2 border-gray-200" />
-      <div className='grid grid-cols-2'>
-        <div className="flex items-center mb-2">
-          <VscIssues size={20} className="mr-2 text-green-500" />
-          <p className="text-gray-500">{issue} Issues</p>
+          <h2 className="text-xl font-bold text-blue-700">{title}</h2>
         </div>
-        <div className="flex items-center mb-2">
-          <FaUsers size={22} className="mr-2 text-blue-700" />
-          <p className="text-gray-500">{contributors} Contributors</p>
+        <p className="text-gray-600 mb-4 overflow-hidden" style={{ maxHeight: "3.2em", lineHeight: "1.6em", textOverflow: "ellipsis" }}>{description}</p>
+        <hr className="my-4 border-t-2 border-gray-200" />
+        <div className='grid grid-cols-2'>
+          <div className="flex items-center mb-2">
+            <VscIssues size={20} className="mr-2 text-green-500" />
+            <p className="text-gray-500">{issue} Issues</p>
+          </div>
+          <div className="flex items-center mb-2">
+            <FaUsers size={22} className="mr-2 text-blue-700" />
+            <p className="text-gray-500">{contributors} Contributors</p>
+          </div>
         </div>
       </div>
-    </div>
+    </Tilt>
   );
 };
 
 const CardDetails = ({ title, description, issue, contributors, languages }) => {
   // Convert the languages object into an array of strings
-  const languageList = Object.keys(languages);
+  const languageName = Object.keys(languages);
+  const languageList = Object.keys(languages).map(language => [language, languages[language]]);
+  const data = languageList.map((language, index) => (
+    { id: index, value: language[1], label: language[0] }
+  ));
 
   return (
     <div className="bg-white p-6 border rounded-lg shadow-lg transition duration-300 ease-in-out hover:border hover:shadow-gray-800">
@@ -42,22 +51,30 @@ const CardDetails = ({ title, description, issue, contributors, languages }) => 
       </div>
       <p className="text-gray-600 mb-4 overflow-hidden" style={{ maxHeight: "3.2em", lineHeight: "1.6em", textOverflow: "ellipsis" }}>{description}</p>
       <hr className="my-4 border-t-2 border-gray-200" />
-      <div className='grid grid-cols-2'>
-        <div className="flex items-center mb-2">
-          <VscIssues size={20} className="mr-2 text-green-500" />
-          <p className="text-gray-500">{issue} Issues</p>
+      <div className='grid grid-cols-2 gap-3'>
+        <div className="flex mb-2 col-span-2">
+            <PieChart
+              series={[{data}]}
+              height={120}
+              width={500}
+            />
         </div>
-        <div className="flex items-center mb-2">
-          <FaUsers size={22} className="mr-2 text-blue-700" />
-          <p className="text-gray-500">{contributors} Contributors</p>
-        </div>
-        <div className="flex items-center mb-2">
-          <FaUsers size={22} className="mr-2 text-blue-700" />
-          {/* Render each language */}
-          {languageList.map((language, index) => (
-            <p key={index} className="text-gray-500 mx-2">{language}</p>
-          ))}
-        </div>
+        
+        <div className="stats shadow border border-gray-400">
+            <div className="stat place-items-center">
+              <div className="stat-title">Contributors</div>
+              <div className="stat-value">{contributors}</div>
+              <div className="stat-desc">↘︎ 90 (14%)</div>
+            </div>
+          </div>
+
+          <div className="stats shadow border border-gray-400">
+            <div className="stat place-items-center">
+              <div className="stat-title">Issues</div>
+              <div className="stat-value">{contributors+113}</div>
+              <div className="stat-desc">↘︎ 90 (14%)</div>
+            </div>
+          </div>
       </div>
     </div>
   );
@@ -95,16 +112,18 @@ function Contribute() {
       .catch(error => {
         console.error(error);
       });
-      console.log(Languages)
       };
 
   const [selectedCard, setSelectedCard] = useState(null);
 
   return (
-    <div className='p-16 bg-white'>
+    <div>
+    <Navigation />
+    <div className='px-16 '>
+      
     <div className="flex">
-      <div className="w-3/4 p-4">
-        <h1 className="text-xl font-semibold mb-4">Cards</h1>
+      <div className="w-3/4 p-4 grid place-items-center">
+        <h1 className="text-2xl font-semibold mb-9 text-white">Public Repositories</h1>
         <div className="grid grid-cols-2 gap-7">
           {Repositories.map(card => (
             <Link to={`/issues?url=${encodeURIComponent(card.issues_url)}`} key={card.id} className="cursor-pointer hover:shadow-md hover:shadow-gray-800 hover:rounded-md"
@@ -112,7 +131,6 @@ function Contribute() {
                   setSelectedCard(card);
                   getContributors(card.contributors_url)
                   getLanguages(card.languages_url)
-                  
                 }}
                 onMouseLeave={() => setSelectedCard(null)}>
               <Card title={card.full_name} />
@@ -120,8 +138,8 @@ function Contribute() {
           ))}
         </div>
       </div>
-      <div className="w-1/2 p-4">
-        <h1 className="text-xl font-semibold mb-4">Quick View</h1>
+      <div className="w-1/2 p-5">
+        <h1 className="text-2xl font-semibold mb-7 text-white grid place-content-center">Quick View</h1>
         {selectedCard ? (
           <CardDetails title={selectedCard.full_name} description={selectedCard.description}
             languages={Languages} contributors={Contributors}/>
@@ -132,6 +150,7 @@ function Contribute() {
           </div>
         )}
       </div>
+    </div>
     </div>
     </div>
   );
