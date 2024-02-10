@@ -1,0 +1,120 @@
+
+    .container {
+            margin-left: 200px;
+    
+        }
+    
+        .heading {
+            text-align: center;
+            margin-top: 1px;
+            margin-bottom: -10px;
+            color: #7E5555;
+    
+        }
+    
+        .cardsContainer {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: center;
+        }
+    
+        .cards {
+    
+            height: 100px;
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            margin: 50px;
+            box-shadow: 5px 5px 10px rgb(190, 188, 188);
+    
+        }
+    
+        .titleTotal {
+            color: #808191;
+            margin-left: 20px;
+        }
+    
+        .number {
+            margin-top: -15px;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+    
+        /* .table{
+        margin: 200px auto;
+        margin-top:-20px; 
+    }
+    
+    .tableRow{
+        padding:30px
+    } */
+    
+        .tableDiv {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            box-shadow: 5px 5px 10px rgb(190, 188, 188);
+            margin-bottom: 5%;
+        }
+    
+        th,
+        td {
+            border: 1px solid #F5F5F5;
+            text-align: center;
+            padding: 8px;
+        }
+    
+        th {
+            background-color: #F5F5F5;
+            background-color: white;
+        }
+    
+        td {
+            background-color: white;
+        }
+    
+        .status {
+            color: #2F981E;
+            font-weight: bold;
+        }
+    
+        tr:hover {
+            color: #9F7979;
+    
+        }
+    
+        .buttons {
+            background-color: #D8C5C5;
+            border: none;
+            width: 75px;
+            height: 30px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        .buttons:hover {
+            background-color: #9F7979;
+            color: white
+        }
+
+                /* Add this CSS to your existing styles or create a new stylesheet */
+        
+                .avatar-img {
+                    width: 40px;
+                    /* Adjust the width and height as needed */
+                    height: 40px;
+                    border-radius: 50%;
+                    /* Creates a circular shape */
+                    object-fit: cover;
+                    /* Ensures the image covers the entire container */
+                    object-position: center center;
+                    /* Center the image within the container */
+                    display: block;
+                    /* Ensures proper display as a block element */
+                }
