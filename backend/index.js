@@ -20,5 +20,10 @@ app.use(express.urlencoded({extended: false}));
 app.use("/user",userRoutes);
 app.use("/event",eventRoutes);
 app.use("/register",registrationRoutes);
+// Enable CORS
+app.use(cors());
+
+
+});
 
 serverHttp.listen(6000,() => console.log("Server is started on port 6000"));
