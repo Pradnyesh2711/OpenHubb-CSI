@@ -8,6 +8,7 @@ import Contribute from './Pages/Contribute/Contribute';
 import HomePage from './Pages/HomePage/HomePage';
 import Profile from './Pages/Profile/Profile';
 import Issues from './Pages/Issues/Issues';
+import App1 from './Pages/Comment/comment'
 
 function App() {
 const[isLogin,setLogin]=useState(false)
@@ -22,6 +23,7 @@ const[isLogin,setLogin]=useState(false)
           <Route path='/contribute' Component={Contribute}/>
           <Route path='/profile' Component={Profile}/>
           <Route path='/issues' Component={Issues}/>
+          <Route path='/app' Component={App1}/>
         </Routes>
       </BrowserRouter>
     </div>

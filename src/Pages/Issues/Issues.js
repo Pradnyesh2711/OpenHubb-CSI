@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
+
 function Issues() {
     const location = useLocation();
     const apiUrl = new URLSearchParams(location.search).get('url');
@@ -34,7 +35,9 @@ function Issues() {
       };
 
   return (
+    
     <div id='issues' className='m-20'>
+        
       <h1>Issue Details</h1>
       {issueDetails ? (
         <div className='grid grid-cols-3 gap-5'>
@@ -56,6 +59,7 @@ function Issues() {
       ) : (
         <p>Loading...</p>
       )}
+   
     </div>
   );
 }

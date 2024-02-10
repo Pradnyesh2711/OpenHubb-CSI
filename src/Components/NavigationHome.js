@@ -1,37 +1,56 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { FaCircleUser } from 'react-icons/fa6';
 
 const NavigationHome = () => {
     const navigate = useNavigate();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-        setIsProfileOpen(false);
-    };
+    const [params] = useSearchParams();
+    const [userProfile, setUserProfile] = useState(null);
 
-    const [isProfileOpen, setIsProfileOpen] = useState(false);
-    const toggleProfile = () => {
-        setIsProfileOpen(!isProfileOpen);
-        setIsMenuOpen(false);
-    };
-
-    const scrollToAbout = () => {
-        // Use navigate to navigate to the desired route
-        navigate('/about');
-    };
+    // useEffect(() => {
+    //     // Check if the user profile exists in local storage
+    //     const userProfileData = localStorage.getItem('userProfile');
+    //     console.log(userProfileData, params)
+    //     if (userProfileData) {
+    //         setUserProfile(JSON.parse(userProfileData));
+    //     } else {
+    //         // If the user profile doesn't exist in local storage, check if the user is logging in
+    //         if (params.get('code')) {
+    //             getUserDetails();
+    //         }
+    //     }
+    // }, [params]);
 
     const handleLogin = () => {
         window.location.href = 'https://github.com/login/oauth/authorize?client_id=4058f61909209bd4fd20&scope=user';
     };
 
+
+        // // Use the access token to fetch user details from GitHub
+        // const userResponse = await fetch('https://api.github.com/user', {
+        //     headers: {
+        //         Authorization: `Bearer ${accessToken}`
+        //     }
+        // });
+        // const userData = await userResponse.json();
+    
+        // // Return user data to the client
+        // res.json(userData);
+   
+        // console.log(await res.json())
+
+
+    const handleLogout = () => {
+        // Clear user profile from state and local storage
+        setUserProfile(null);
+        localStorage.removeItem('userProfile');
+    };
+
     const navigateToContribute = () => {
-        // Use navigate to navigate to the 'contribute' route
         navigate('/contribute');
     };
 
     const navigateToLeaderboard = () => {
-        // Use navigate to navigate to the 'leaderboard' route
         navigate('/leaderboard');
     };
 
@@ -39,9 +58,9 @@ const NavigationHome = () => {
         <div>
             <nav className="bg-gray-800 p-4 mt-4">
                 <div className="mx-2">
-                    <div className="flex items-center ">
+                    <div className="flex items-center justify-between">
                         <div className="text-white text-2xl font-bold ml-2">Coding Geeks</div>
-                        <div className="">
+                        <div className="flex items-center">
                             <button
                                 className="text-white hover:text-slate-300 mx-4 cursor-pointer"
                                 onClick={navigateToContribute}
@@ -54,7 +73,29 @@ const NavigationHome = () => {
                             >
                                 Leaderboard
                             </button>
-
+                            {userProfile ? (
+                                <div className="relative">
+                                    <img
+                                        src={userProfile.avatar_url}
+                                        alt="Profile"
+                                        className="w-10 h-10 rounded-full cursor-pointer"
+                                        onClick={() => navigate('/profile')}
+                                    />
+                                    <button
+                                        onClick={handleLogout}
+                                        className="absolute top-0 right-0 mt-1 mr-1 text-xs text-gray-500"
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={handleLogin}
+                                    className="text-white hover:text-slate-300 mx-4 cursor-pointer"
+                                >
+                                    Login
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

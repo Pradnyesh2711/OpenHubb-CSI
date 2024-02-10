@@ -5,15 +5,14 @@ import { Link } from "react-scroll";
 import developer from '../../Components/Images/developer.png'
 import star from '../../Components/Images/star.gif'
 import arrow from '../../Components/Images/arrow.png'
-import Comment from '../../Components/comment';
+
 import './LandingPage.css'
 import Navigation from '../../Components/Navigation';
-
 function LandingPage()
 {
     return(
         <div>
-        <Navigation/>
+           <Navigation/>
           <div className='flex flex-row mt-7'>
     {/* Headings */}
     <div className='flex flex-col justify-center'>
@@ -55,35 +54,6 @@ function LandingPage()
   <div className='border-t border-b border-opacity-30 border-gray-300'></div>
 </div>
 
-  <div className='flex flex-row flex-wrap justify-center'>
-    <div className=' cards bg-white border max-w-xs  overflow-hidden shadow-xl neon-border w-60 mt-4 ml-7 mr-7 h-72 absolute top-36 md:mt-0 sm:max-w-md xl:p-0 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-5 border border-gray-100 '>
-        <img className='mt-2 w-24  px-4' src={arrow}/>
-        <h2 className="font-bold text-lg text-left mb-2 mt-5 px-4 text-white"> Find Doctors </h2>
-        <p className='text-left px-4 mb-1 text-white'>You will be able to find the best doctors possible in the field of dental and derma!</p>
-    </div>
-     <div className='bg-white cards  border max-w-xs  overflow-hidden shadow-xl neon-border w-60 mt-4 ml-7 mr-7 h-72 absolute top-36 md:mt-0 sm:max-w-md xl:p-0 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-5 border border-gray-100'>
-        <img className='mt-2 w-24  px-4' src={arrow}/>
-        <h2 className="font-bold text-lg text-left mb-2 mt-5 px-4 text-white"> Find Doctors </h2>
-        <p className='text-left px-4 mb-1 text-white'>You will be able to find the best doctors possible in the field of dental and derma!</p>
-    </div>
-     <div className=' bg-white cards  border max-w-xs  overflow-hidden shadow-xl neon-border w-60 mt-4 ml-7 mr-7  h-72 absolute top-36 md:mt-0 sm:max-w-md xl:p-0 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-5 border border-gray-100'>
-        <img className='mt-2 w-24  px-4' src={arrow}/>
-        <h2 className="font-bold text-lg text-left mb-2 mt-5 px-4 text-white"> Find Doctors </h2>
-        <p className='text-left px-4 mb-1 text-white'>You will be able to find the best doctors possible in the field of dental and derma!</p>
-    </div>
-    <div className='bg-white cards  border max-w-xs  overflow-hidden shadow-xl neon-border w-60 mt-4 ml-7 h-72 absolute top-36 md:mt-0 sm:max-w-md xl:p-0 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-5 border border-gray-100'>
-        <img className='mt-2 w-24  px-4' src={arrow}/>
-        <h2 className="font-bold text-lg text-left mb-2 mt-5 px-4 text-white"> Find Doctors </h2>
-        <p className='text-left px-4 mb-1 text-white'>You will be able to find the best doctors possible in the field of dental and derma!</p>
-    </div>  
-  </div>
-  
-  <div className='mt-64 '>
-    <h3 className='font-mono mt-2 font-bold text-3xl text-lime-400 text-center'>Let your code speak for you</h3>
-    <h2 className='font-sans mt-2 font-bold text-3xl text-white text-center'>We crunch data from your commits, issues and PRs</h2>
-    <h3 className='font-sans mt-2 font-light text-xl text-white text-center' >to match you to paid contribution opportunities that fit your skills.</h3>
-  </div>
-  <br></br>
         </div>
     )
 }
