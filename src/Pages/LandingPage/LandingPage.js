@@ -5,6 +5,7 @@ import { Link } from "react-scroll";
 import developer from '../../Components/Images/developer.png'
 import star from '../../Components/Images/star.gif'
 import arrow from '../../Components/Images/arrow.png'
+import Comment from '../../Components/comment';
 import './LandingPage.css'
 import Navigation from '../../Components/Navigation';
 
@@ -17,6 +18,7 @@ function LandingPage()
     {/* Headings */}
     <div className='flex flex-col justify-center'>
     <div>
+      {/* <Comment/> */}
       <img className='absolute ml-20 w-20' src={star}/>
         <h1 className='relative font-sans mt-10 text-left pl-32 font-bold text-7xl text-lime-400'>Contribute & Earn</h1>
         </div>
