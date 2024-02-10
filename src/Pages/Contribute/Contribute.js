@@ -116,11 +116,11 @@ console.log(Repos)
       <div className="w-3/4 p-4">
         <h1 className="text-xl font-semibold mb-4">Cards</h1>
         <div className="grid grid-cols-2 gap-7">
-          {cards.map(card => (
+          {Repos.map(card => (
             <div key={card.id} className="cursor-pointer"
                 onMouseEnter={() => setSelectedCard(card)}
                 onMouseLeave={() => setSelectedCard(null)}>
-              <Card title={card.title} description={card.description} issue={card.issues} contributors={card.contributors}/>
+              <Card title={card.full_name} description={card.description} issue={card.issues} contributors={card.contributors}/>
             </div>
           ))}
         </div>
