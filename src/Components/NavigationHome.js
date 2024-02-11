@@ -54,21 +54,29 @@ const NavigationHome = () => {
         navigate('/leaderboard');
     };
 
+    const navigatetoChat= () => {
+        navigate('/chatbot');
+    };
+
     return (
         <div>
-            <nav className="bg-gray-800 p-4 mt-4">
+            <nav className="bg-gray-800 p-4">
                 <div className="mx-2">
                     <div className="flex items-center justify-between">
+                    <div className="flex items-center">
                         <div className="text-white text-2xl font-bold ml-2">Coding Geeks</div>
+                            <button className="bg-white text-xl font-bold m5-2 border-2 hover:bg-slate-700 hover:text-white px-2 py-1 rounded-full w-28 h-10 mx-4"
+                            onClick={navigatetoChat}>Chat</button>
+                        </div>
                         <div className="flex items-center">
                             <button
-                                className="text-white hover:text-slate-300 mx-4 cursor-pointer"
+                                className=" text-white border-white border-2 hover:bg-slate-700 hover:text-white px-2 py-1 rounded-full w-28 h-10 mx-4"
                                 onClick={navigateToContribute}
                             >
                                 Contribute
                             </button>
                             <button
-                                className="text-white hover:text-slate-300 mx-4 cursor-pointer"
+                                className=" text-white border-white border-2 hover:bg-slate-700 hover:text-white px-2 py-1 rounded-full w-28 h-10 mx-4"
                                 onClick={navigateToLeaderboard}
                             >
                                 Leaderboard
@@ -89,12 +97,13 @@ const NavigationHome = () => {
                                     </button>
                                 </div>
                             ) : (
-                                <button
+                                <FaCircleUser
                                     onClick={handleLogin}
+                                    size={30}
                                     className="text-white hover:text-slate-300 mx-4 cursor-pointer"
                                 >
                                     Login
-                                </button>
+                                </FaCircleUser>
                             )}
                         </div>
                     </div>

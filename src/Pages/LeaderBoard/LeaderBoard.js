@@ -4,15 +4,40 @@ import Leader from './Leader';
 import './Leaderboard.css';
 import NavigationHome from '../../Components/NavigationHome';
 
-export default function LeaderBoard() {
-  const sortedLeader = Leader.sort((a, b) => a.Rank - b.Rank);
-
+function LeaderBoard() {
+  //const sortedLeader = Leader.sort((a, b) => a.Rank - b.Rank);
+  const sortedLeader=Leader.slice().sort((a, b) => a.Rank - b.Rank);
+  const top3=sortedLeader.slice(0, 3);
   return (
     <div>
       <NavigationHome />
-      <h1 className='font-sans mt-2 text-center  pl-32 font-bold text-4xl mb-4 text-white'>Leaderboard</h1>
+      <div className='grid place-items-center'>
+      <h1 className='font-mono mt-2 font-bold text-4xl mb-4 text-white'>Leaderboard</h1>
       {/* Table div */}
-      <div className='tableDiv'>
+      <div class="wrapper mt-8">
+        <div class="winners rank2">
+            <h1 class="rank">#2</h1>
+            <div class="photo" style={{ backgroundImage: `url(${top3[1].img})` }}></div>
+            <h2 class="name">{top3[1].Username}</h2>
+        </div>
+        <div class="winners rank1">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <i class="trophy_icon fa-solid fa-trophy"></i>
+            <h1 class="rank">#1</h1>
+            <div class="photo" style={{ backgroundImage: `url(${top3[0].img})` }}></div>
+            <h2 class="name">{top3[0].Username}</h2>
+        </div>
+        <div class="winners rank3">
+            <h1 class="rank">#3</h1>
+            <div class="photo" style={{ backgroundImage: `url(${top3[2].img})` }}></div>
+            <h2 class="name">{top3[2].Username}</h2>
+        </div>
+    </div>
+
+      <div className='mt-8 tableDiv'>
         <table className='table'>
           <thead className='tableHeading'>
             <tr className='tableRow'>
@@ -36,7 +61,7 @@ export default function LeaderBoard() {
                         <p>{details.Username}</p>
                       </div>
                     </td>
-                    <td>{details.Language}</td>
+                    <td>{details.Languages}</td>
                     <td>{details.Rank}</td>
                   </tr>
                 );
@@ -50,5 +75,8 @@ export default function LeaderBoard() {
         </table>
       </div>
     </div>
+    </div>
   );
 }
+
+export default LeaderBoard;

@@ -6,9 +6,10 @@ import HoverRepo from './HoverRepo.png'
 import Repositories from  '../../Repositories.json'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import Navigation from '../../Components/Navigation';
+import NavigationHome from '../../Components/NavigationHome';
 import {PieChart} from '@mui/x-charts'
 import Tilt from 'react-parallax-tilt';
+import HomePage from '../HomePage/HomePage';
 
 const Card = ({ title, description, issue, contributors }) => {
   return (
@@ -16,7 +17,7 @@ const Card = ({ title, description, issue, contributors }) => {
       <div className="bg-white p-6 border-2 border-black rounded-lg shadow-lg transition duration-300 ease-in-out hover:border hover:shadow-gray-800">
         <div className="flex items-center mb-2">
           <AiFillProject size={25} className="mr-2 text-blue-700" />
-          <h2 className="text-xl font-bold text-blue-700">{title}</h2>
+          <h2 className="text-xl font-bold text-blue-700 overflow-hidden" style={{ maxHeight: "3.2em", lineHeight: "1.6em", textOverflow: "ellipsis" }}>{title}</h2>
         </div>
         <p className="text-gray-600 mb-4 overflow-hidden" style={{ maxHeight: "3.2em", lineHeight: "1.6em", textOverflow: "ellipsis" }}>{description}</p>
         <hr className="my-4 border-t-2 border-gray-200" />
@@ -60,7 +61,7 @@ const CardDetails = ({ title, description, issue, contributors, languages }) => 
             />
         </div>
         
-        <div className="stats shadow border border-gray-400">
+        <div className="stats shadow-md border shadow-gray-800 text-gray-800">
             <div className="stat place-items-center">
               <div className="stat-title">Contributors</div>
               <div className="stat-value">{contributors}</div>
@@ -68,7 +69,7 @@ const CardDetails = ({ title, description, issue, contributors, languages }) => 
             </div>
           </div>
 
-          <div className="stats shadow border border-gray-400">
+          <div className="stats shadow-md border shadow-gray-800 text-gray-800">
             <div className="stat place-items-center">
               <div className="stat-title">Issues</div>
               <div className="stat-value">{contributors+113}</div>
@@ -118,12 +119,11 @@ function Contribute() {
 
   return (
     <div>
-    <Navigation />
+    <NavigationHome />
     <div className='px-16 '>
-      
-    <div className="flex">
+    <div className="flex mt-5">
       <div className="w-3/4 p-4 grid place-items-center">
-        <h1 className="text-2xl font-semibold mb-9 text-white">Public Repositories</h1>
+        <h1 className="text-3xl font-semibold mb-9 text-white">Public Repositories</h1>
         <div className="grid grid-cols-2 gap-7">
           {Repositories.map(card => (
             <Link to={`/issues?url=${encodeURIComponent(card.issues_url)}`} key={card.id} className="cursor-pointer hover:shadow-md hover:shadow-gray-800 hover:rounded-md"
@@ -139,7 +139,7 @@ function Contribute() {
         </div>
       </div>
       <div className="w-1/2 p-5">
-        <h1 className="text-2xl font-semibold mb-7 text-white grid place-content-center">Quick View</h1>
+        <h1 className="text-3xl font-semibold mb-7 text-white grid place-content-center">Quick View</h1>
         {selectedCard ? (
           <CardDetails title={selectedCard.full_name} description={selectedCard.description}
             languages={Languages} contributors={Contributors}/>
@@ -149,7 +149,9 @@ function Contribute() {
             <img src={HoverRepo} alt='Hover' className=" place-self-center mt-2"></img>
           </div>
         )}
+        <HomePage/>
       </div>
+      
     </div>
     </div>
     </div>

@@ -53,7 +53,34 @@ function LandingPage()
   </div>
   <div className='border-t border-b border-opacity-30 border-gray-300'></div>
 </div>
+<div className='flex flex-row flex-wrap mt-64 px-6 py-8  md:h-screen lg:py-0 align-center justify-center '>
+    <div className=' cards bg-white border max-w-xs  overflow-hidden shadow-xl neon-border w-60 mt-4 ml-7 h-72 absolute -top-36 className="md:mt-0 sm:max-w-md xl:p-0 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-5 border border-gray-100" '>
+        <img className='mt-2 w-24  px-4' src={arrow}/>
+        <h2 className="font-bold text-lg text-left mb-2 mt-5 px-4 text-white"> Find Projects </h2>
+        <p className='text-left px-4 mb-1  text-white'>You will be able to find the best projects possible in the field of your likes!</p>
+    </div>
+     <div className='bg-white cards  border max-w-xs  overflow-hidden shadow-xl neon-border w-60 mt-4 ml-7 h-72 absolute -top-36 className="md:mt-0 sm:max-w-md xl:p-0 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-5 border border-gray-100"'>
+        <img className='mt-2 w-24  px-4' src={arrow}/>
+        <h2 className="font-bold text-lg text-left mb-2 mt-5 px-4  text-white"> Get Reccommendations </h2>
+        <p className='text-left px-4 mb-1  text-white'>You will be able to find great Reccommendations based on your commits</p>
+    </div>
+     <div className=' bg-white cards  border max-w-xs  overflow-hidden shadow-xl neon-border w-60 mt-4 ml-7 h-72 absolute -top-36 className="md:mt-0 sm:max-w-md xl:p-0 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-5 border border-gray-100"'>
+        <img className='mt-2 w-24  px-4' src={arrow}/>
+        <h2 className="font-bold text-lg text-left mb-2 mt-5 px-4  text-white"> Get Queries Answered </h2>
+        <p className='text-left px-4 mb-1  text-white'>You can find all possible answers to your questions on the projects.</p>
+    </div>
+    <div className='bg-white cards  border max-w-xs  overflow-hidden shadow-xl neon-border w-60 mt-4 ml-7 h-72 absolute -top-36 className="md:mt-0 sm:max-w-md xl:p-0 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-5 border border-gray-100"'>
+        <img className='mt-2 w-24  px-4' src={arrow}/>
+        <h2 className="font-bold text-lg text-left mb-2 mt-5 px-4  text-white"> Earn Rewards </h2>
+        <p className='text-left px-4 mb-1  text-white'>Use your skills and get Rewards. Enjoy while building:|</p>
+    </div>  
 
+    <div>
+        <h4 className='font-mono mt-10 text-center pl-32 font-bold text-3xl text-lime-400'>Let your code speak for you</h4>
+        <h2 className='font-sans mt-2 text-center pl-32 font-bold text-4xl text-white'>We crunch data from your commits, issues and PRs</h2>
+        <h4 className='font-mono mt-2 text-center pl-32 font-light text-2xl text-white'>to match you to paid contribution opportunities that fit your skills.</h4>
+    </div>
+  </div>
         </div>
     )
 }

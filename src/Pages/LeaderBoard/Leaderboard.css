@@ -1,4 +1,4 @@
-/* 
+
     .container {
             margin-left: 200px;
     
@@ -41,16 +41,16 @@
             font-weight: bold;
         } */
     
-        /* .table{
+       .table{
         margin: 200px auto;
         margin-top:-20px; 
     }
     
     .tableRow{
         padding:30px
-    } */
+    }
     
-        /* .tableDiv {
+        .tableDiv {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -104,17 +104,177 @@
         }
 
                 /* Add this CSS to your existing styles or create a new stylesheet */
-        
-                 /* .avatar-img {
-                    width: 40px;
-                    /* Adjust the width and height as needed */
-                    /* height: 40px;
-                    border-radius: 50%; */
-                    /* Creates a circular shape */
-                    /* object-fit: cover; */
-                    /* Ensures the image covers the entire container */
-                    /* object-position: center center; */
-                    /* Center the image within the container */
-                    /* display: block; */
-                    /* Ensures proper display as a block element */
-                /* }  */
+                .avatar-img {
+                    width: 50px; /* Adjust the size of the image */
+                    height: 50px; /* Adjust the size of the image */
+                    border-radius: 50%; /* Makes the image circular */
+                    object-fit: cover; /* Ensures the image covers the entire area of the circle */
+                  }
+                 
+                body {
+                    /* To center the wrapper inside body */
+                    min-height: 100vh;
+                    display: grid;
+                    place-items: center;
+            
+                    background-color: #0c1633;
+                }
+            
+                .wrapper {
+                    height: 500px; /* Will be overrided in media query */
+                    padding: 15px;
+            
+                    /* Main container */
+                    display: flex;
+                    justify-content: space-around; /* To center single items horizontally and space around for multiple items. */
+                    gap: 15px;
+                    align-items: end;
+                    /* To stick the "winners" at the bottom within the container */
+                }
+                
+                .winners {
+                    /* Basic Styling */
+                    width: 300px;
+                    height: 400px;
+                    background-color: #00111c;
+                    color: #ff9b71;
+                    border-radius: 5px;
+                    
+                    /* For controlling the alignments of the items inside each cards */
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-around;
+                }
+            
+                .winners:hover {
+                    box-shadow: 0 0 6px #03e9f4,
+                        0 0 12px #03e9f4,
+                        0 0 24px #03e9f4,
+                        0 0 48px #03e9f4;
+                }
+            
+                .rank1 {
+                    height: 500px; /* Making the "rank1" card relatively taller */
+                    
+                    /* Important for making the moving border effect */
+                    position: relative;
+                    overflow: hidden;
+                }
+            
+                .photo {
+                    width: 60%;
+                    aspect-ratio: 1; /* Will keep the height equal to the width */
+                    border-radius: 50%; /* Makes it a circle */
+                    border: 4px solid #fffd82;
+                    background-size: cover;
+                }
+            
+                .trophy_icon {
+                    font-size: 3rem;
+                    color: #fffd82;
+                }
+                .name{
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    text-align: center;
+                }
+            
+                /* For creating the moving border light effect */
+                .rank1 span {
+                    position: absolute;
+            
+                    /* Only for horizontal borders*/
+                    width: 100%;
+                    height: 5px;
+                }
+            
+                /* Selects only vertical borders */
+                .rank1 span:nth-child(even){
+                    width: 5px;
+                    height: 100%;
+                }
+            
+                /* Top border */
+                .rank1 span:nth-child(1) {
+                    top: 0;
+                    left: -100%;
+                    animation: left-to-right 1s linear infinite;
+                    background: linear-gradient(90deg, transparent, #ed217c);
+                }
+            
+                /* Right border */
+                .rank1 span:nth-child(2) {
+                    right: 0;
+                    top: -100%;
+                    animation: top-to-bottom 1s linear 0.5s infinite;
+                    background: linear-gradient(180deg, transparent, #ed217c);
+                }
+            
+                /* Bottom border */
+                .rank1 span:nth-child(3) {
+                    bottom: 0;
+                    right: -100%;
+                    animation: right-to-left 1s linear 1s infinite;
+                    background: linear-gradient(270deg, transparent, #ed217c);
+                }
+            
+                /* Left border */
+                .rank1 span:nth-child(4) {
+                    left: 0;
+                    bottom: -100%;
+                    animation: bottom-to-top 1s linear 1.5s infinite;
+                    background: linear-gradient(0deg, transparent, #ed217c);
+                }
+            
+                @keyframes left-to-right {
+                    from {left: -100%;}
+                    to {left: 100%;}
+                }
+            
+                @keyframes top-to-bottom {
+                    from {top: -100%;}
+                    to {top: 100%;}
+                }
+            
+                @keyframes right-to-left {
+                    from {right: -100%;}
+                    to {right: 100%;}
+                }
+            
+                @keyframes bottom-to-top {
+                    from {bottom: -100%;}
+                    to {bottom: 100%;}
+                }
+            
+                /* For smaller screens */
+                @media screen and (max-width: 970px) {
+                    .wrapper{
+                        flex-wrap: wrap-reverse; /* Reverse because we want one element on top not bottom */
+                        height: 100%;
+                    }
+                    .rank1{
+                        order: 1; /* To bring it to the top (in the first row) when wrapped*/
+                    }
+                }
+            
+                @media screen and (max-width: 661px) {
+                    .rank2{
+                        order: 1;
+                        /* To prevent the second rank from moving to the last in vertical layout */
+                    }
+                }
+            
+                /* Setting the Profile photos */
+                .rank1>.photo {
+                    background-image: url("https://images.unsplash.com/photo-1589995358068-cf709addda7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDJ8fHNtaWxpbmclMjBmYWNlcyUyMHdpdGglMjBtZWRhbHN8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60");
+                }
+            
+                .rank2>.photo {
+                    background-image: url("https://images.unsplash.com/photo-1585237017203-04481e5bfa87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fHNtaWxpbmclMjBmYWNlcyUyMHdpdGglMjBtZWRhbHN8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60");
+                    background-position: center;
+                }
+            
+                .rank3>.photo {
+                    background-image: url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODB8fHNpbWlsaW5nJTIwbWVufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60");
+                }

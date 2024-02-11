@@ -1,0 +1,26 @@
+.tagline {
+    font-weight: 700;
+    font-size: 3rem;
+
+    background: linear-gradient(to right,
+            #0d265c 10%,
+            #0b98da 30%,
+            #0b98da 70%,
+            #0d265c 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    background-size: 300% auto;
+    animation: textShine 5s ease-in-out infinite alternate;
+
+    @keyframes textShine {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+}

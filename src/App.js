@@ -9,7 +9,8 @@ import HomePage from './Pages/HomePage/HomePage';
 import Profile from './Pages/Profile/Profile';
 import Issues from './Pages/Issues/Issues';
 import App1 from './Pages/Comment/comment'
-
+import Chatbot from './Pages/Chatbot/Chatbot';
+import LeaderBoard from './Pages/LeaderBoard/LeaderBoard';
 function App() {
 const[isLogin,setLogin]=useState(false)
 
@@ -24,6 +25,8 @@ const[isLogin,setLogin]=useState(false)
           <Route path='/profile' Component={Profile}/>
           <Route path='/issues' Component={Issues}/>
           <Route path='/app' Component={App1}/>
+          <Route path='/chatbot' Component={Chatbot} />
+          <Route path='/leaderboard' Component={LeaderBoard} />
         </Routes>
       </BrowserRouter>
     </div>
